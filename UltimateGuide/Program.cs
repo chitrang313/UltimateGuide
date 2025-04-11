@@ -15,19 +15,27 @@ app.UseEndpoints(endpoints => {
         await context.Response.WriteAsync($"Reading File: {filename} - {extension}");
     });
 
-    endpoints.Map("employees/profile/{name=user}", async (context) => {
-        string? name = context.Request.RouteValues["name"].ToString();
-        await context.Response.WriteAsync($"Employee Profile: {name}");
+    endpoints.Map("employees/profile/{name?}",async (context) => {
+        if (context.Request.RouteValues.ContainsKey("name")) {
+            string? name = context.Request.RouteValues["name"].ToString();
+            await context.Response.WriteAsync($"Employee Profile: {name}");
+        } else { 
+            await context.Response.WriteAsync($"Employee Profile: No Name provided");
+        }
     });
 
-    endpoints.Map("product/detail/{id=0}",async (context) => {
-        int? id = Convert.ToInt32(context.Request.RouteValues["id"]);
-        await context.Response.WriteAsync($"Product Detail: {id}");
+    endpoints.Map("product/detail/{id?}",async (context) => {
+        if (context.Request.RouteValues.ContainsKey("id")) {
+            int? id = Convert.ToInt32(context.Request.RouteValues["id"]);
+            await context.Response.WriteAsync($"Product Detail: {id}");
+        } else {
+            await context.Response.WriteAsync($"Product Detail: No ID provided");
+        }
     });
 
 });
 
-app.Run(async (context) => { 
+app.Run(async (context) => {
     await context.Response.WriteAsync($"Request received at: {context.Request.Path}");
 });
 
