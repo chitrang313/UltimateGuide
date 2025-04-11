@@ -19,7 +19,7 @@ app.UseEndpoints(endpoints => {
         if (context.Request.RouteValues.ContainsKey("name")) {
             string? name = context.Request.RouteValues["name"].ToString();
             await context.Response.WriteAsync($"Employee Profile: {name}");
-        } else { 
+        } else {
             await context.Response.WriteAsync($"Employee Profile: No Name provided");
         }
     });
@@ -30,6 +30,15 @@ app.UseEndpoints(endpoints => {
             await context.Response.WriteAsync($"Product Detail: {id}");
         } else {
             await context.Response.WriteAsync($"Product Detail: No ID provided");
+        }
+    });
+
+    endpoints.Map("daily-digest-report/{reportdate:datetime?}",async (context) => {
+        if (context.Request.RouteValues.ContainsKey("reportdate")) {
+            DateTime selectedDate = Convert.ToDateTime(context.Request.RouteValues["reportdate"]);
+            await context.Response.WriteAsync($"Report: {selectedDate.ToShortDateString()}");
+        } else {
+            await context.Response.WriteAsync($"Report: No Date provided");
         }
     });
 
