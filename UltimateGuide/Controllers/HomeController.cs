@@ -28,6 +28,26 @@ namespace UltimateGuide.Controllers {
             return Json(person);
         }
 
+        [Route("file-download")]
+        public VirtualFileResult DownloadFile() {
+            //return new VirtualFileResult("/sample.pdf","application/pdf");
+            return File("/sample.pdf","application/pdf");
+        }
+        
+        //D:\Web\Placeholders
+        [Route("file-download-2")]
+        public PhysicalFileResult DownloadFilePhysically() {
+            //return new PhysicalFileResult(@"D:/Web/Placeholders/sample.pdf","application/pdf");
+            return PhysicalFile(@"D:/Web/Placeholders/sample.pdf","application/pdf");
+        }
+
+        [Route("file-download-3")]
+        public FileContentResult DownloadFileContent() {
+            byte[] bytes = System.IO.File.ReadAllBytes(@"D:/Web/Placeholders/sample.pdf");
+            //return new FileContentResult(bytes,"application/pdf");
+            return File(bytes,"application/pdf");
+        }
+
         [Route("contact-us")]
         [Route("contact/{mobile:regex(^\\d{{10}}$)}")]
         public string Contact() {
