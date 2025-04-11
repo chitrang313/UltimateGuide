@@ -4,8 +4,20 @@ var builder = WebApplication.CreateBuilder(args);
 
 var app = builder.Build();
 
+app.Use(async (context,next) => {
+    Endpoint? endpoint = context.GetEndpoint();
+    await context.Response.WriteAsync($"Endpoint: {endpoint?.DisplayName}\n");
+    await next(context);
+});
+
 //Enable Routing
 app.UseRouting();
+
+app.Use(async (context,next) => {
+    Endpoint? endpoint = context.GetEndpoint();
+    await context.Response.WriteAsync($"Endpoint: {endpoint?.DisplayName}\n");
+    await next(context);
+});
 
 //creating end points
 app.UseEndpoints(endpoints => {
