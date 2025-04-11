@@ -4,8 +4,15 @@ namespace UltimateGuide.Controllers {
     public class HomeController:Controller {
         [Route("sayhello")]
         [Route("/")]
-        public string Index() {
-            return "Hello from the Index of Home";
+        public ContentResult Index() {
+            //return new ContentResult() {
+            //    ContentType = "text/plain",
+            //    Content = "Hello from the Home Controller",
+            //};
+
+            //return Content("Hello from the Home Controller","text/plain");
+
+            return Content("<h1>Hello</h1><h3>from the html</h3>", "text/html");
         }
 
         [Route("about")]
