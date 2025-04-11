@@ -1,4 +1,4 @@
-using UltimateGuide.Middleware;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions() { 
     WebRootPath = "myroot"
@@ -7,6 +7,9 @@ var builder = WebApplication.CreateBuilder(new WebApplicationOptions() {
 var app = builder.Build();
 
 app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions() { 
+FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(),"mywebroot")),
+});
 
 app.UseRouting();
 
