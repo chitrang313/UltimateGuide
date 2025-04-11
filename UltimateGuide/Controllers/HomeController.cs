@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using UltimateGuide.Models;
 
 namespace UltimateGuide.Controllers {
     public class HomeController:Controller {
@@ -15,9 +16,16 @@ namespace UltimateGuide.Controllers {
             return Content("<h1>Hello</h1><h3>from the html</h3>", "text/html");
         }
 
-        [Route("about")]
-        public string About() {
-            return "Hello from the About of Home";
+        [Route("person")]
+        public JsonResult Person() {
+            Person person = new Person() {
+                Id = Guid.NewGuid(),
+                firstName = "username",
+                lastName = "surname",
+                age = 30,
+            };
+            //return new JsonResult(person);
+            return Json(person);
         }
 
         [Route("contact-us")]
