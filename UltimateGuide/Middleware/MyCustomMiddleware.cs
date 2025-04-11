@@ -7,4 +7,10 @@ namespace UltimateGuide.Middleware {
             await context.Response.WriteAsync("\nCustom Middleware End");
         }
     }
+
+    public static class CustomMiddlewareExtensions {
+        public static IApplicationBuilder UseMyCustomMiddleware(this IApplicationBuilder app) {
+            return app.UseMiddleware<MyCustomMiddleware>();
+        }
+    }
 }
