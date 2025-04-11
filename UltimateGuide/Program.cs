@@ -42,6 +42,11 @@ app.UseEndpoints(endpoints => {
         }
     });
 
+    endpoints.Map("cities/{cityid:guid}",async (context) => {
+        Guid cityId = Guid.Parse((string)context.Request.RouteValues["cityid"]);
+        await context.Response.WriteAsync($"City ID: {cityId}");
+    });
+
 });
 
 app.Run(async (context) => {
