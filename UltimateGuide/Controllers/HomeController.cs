@@ -3,8 +3,8 @@ using UltimateGuide.Models;
 
 namespace UltimateGuide.Controllers {
     public class HomeController:Controller {
-        [Route("file")]
-        [HttpPost]
+        [Route("bookstore")]
+        [Route("/")]
         public IActionResult Index() {
             if (!Request.Query.ContainsKey("bookid")) {
                 //Response.StatusCode = 400;
@@ -30,7 +30,9 @@ namespace UltimateGuide.Controllers {
                 //return Content("You must be logged in to view this page");
                 return Unauthorized("You must be logged in to view this page");
             }
-            return File("sample.pdf","application/pdf");
+            //return File("sample.pdf","application/pdf");
+            //return new RedirectToActionResult("Books", "Store", new { });
+            return new RedirectToActionResult("Books", "Store", new { },permanent: true);
         }
 
     }
