@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
+using System.Net;
 using UltimateGuide.Models;
 
 namespace UltimateGuide.Controllers {
@@ -19,8 +21,8 @@ namespace UltimateGuide.Controllers {
                 return BadRequest("Book ID is empty");
             }
 
-            int bookId = Convert.ToInt32(Request.Query["bookid"]);
-            if (bookId <= 0 || bookId > 1000) {
+            int bookid = Convert.ToInt32(Request.Query["bookid"]);
+            if (bookid <= 0 || bookid > 1000) {
                 //return Content("Book ID must be greter then zero and less then 1000");
                 return NotFound("Book ID must be greater than zero and less than 1000");
             }
@@ -31,8 +33,23 @@ namespace UltimateGuide.Controllers {
                 return Unauthorized("You must be logged in to view this page");
             }
             //return File("sample.pdf","application/pdf");
+
+            //302 - Temporary Redirect
             //return new RedirectToActionResult("Books", "Store", new { });
-            return new RedirectToActionResult("Books", "Store", new { },permanent: true);
+            //return RedirectToAction("Books","Store",new { id = bookid });
+
+            //301 - Permanent Redirect
+            //return new RedirectToActionResult("Books", "Store", new { },permanent: true);
+            //return RedirectToActionPermanent("Books","Store",new { id = bookid });
+
+            //302 - Temporary Redirect
+            //LocalRedirectResult we are using for locally redirect using url
+            //return new LocalRedirectResult($"store/books/{bookid}");
+            //return LocalRedirect($"store/books/{bookid}");
+
+            //301 - Permanent Redirect
+            //return new LocalRedirectResult($"store/books/{bookid}",permanent: true);
+            return LocalRedirectPermanent($"store/books/{bookid}");
         }
 
     }

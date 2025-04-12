@@ -2,9 +2,10 @@
 
 namespace UltimateGuide.Controllers {
     public class StoreController:Controller {
-        [Route("store/books")]
-        public string Books() {
-            return "Book Store";
+        [Route("store/books/{id}")]
+        public IActionResult Books() {
+            int _bookId = Convert.ToInt32(Request.RouteValues["id"]);
+            return Content($"<h1>Book: {_bookId}</h1>","text/html");
         }
     }
 }
