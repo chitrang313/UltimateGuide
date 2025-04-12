@@ -15,13 +15,8 @@ namespace UltimateGuide.Controllers {
         [Route("register")]
         public IActionResult Register(Person person) {
             if (!ModelState.IsValid) {
-                List<string> errorList = new List<string>(); 
-                foreach (var item in ModelState.Values) {
-                    foreach (var error in item.Errors) {
-                        errorList.Add(error.ErrorMessage);
-                    }
-                }
-                string errors = string.Join(Environment.NewLine, errorList);
+               string errors = string.Join(Environment.NewLine, ModelState.Values.SelectMany(item => item.Errors.Select(error => error.ErrorMessage)));
+                
                 return BadRequest(errors);
             }
 

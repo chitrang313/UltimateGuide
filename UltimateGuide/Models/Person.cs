@@ -3,7 +3,7 @@
 namespace UltimateGuide.Models {
     public class Person {
         public Guid Id{ get; set; }
-        [Required]
+        [Required(ErrorMessage = "Person name can't be null or empty")]
         public string? firstName { get; set; }
         public string? lastName { get; set; }
         public int age { get; set; }
