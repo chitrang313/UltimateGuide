@@ -6,7 +6,7 @@ using UltimateGuide.Models;
 namespace UltimateGuide.Controllers {
     public class HomeController:Controller {
         [Route("bookstore/{bookid?}/{isloggedin?}")]
-        public IActionResult Index(int? bookid, bool? isloggedin) {
+        public IActionResult Index(int? bookid, bool? isloggedin, Book book) {
             if (!bookid.HasValue) {
                 //Response.StatusCode = 400;
                 //return Content("Book ID is empty");
@@ -27,7 +27,7 @@ namespace UltimateGuide.Controllers {
 
             //302 - Temporary Redirect
             //return new RedirectToActionResult("Books", "Store", new { });
-            //return RedirectToAction("Books","Store",new { id = bookid });
+            return RedirectToAction("Books","Store",new { id = bookid });
 
             //301 - Permanent Redirect
             //return new RedirectToActionResult("Books", "Store", new { },permanent: true);
@@ -43,7 +43,7 @@ namespace UltimateGuide.Controllers {
             //return LocalRedirectPermanent($"store/books/{bookid}");
 
             //return Redirect($"store/books/{bookid}");
-            return RedirectPermanent($"/store/books/{bookid}");
+            //return RedirectPermanent($"/store/books/{bookid}");
         }
     }
 }
