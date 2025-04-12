@@ -49,8 +49,10 @@ namespace UltimateGuide.Controllers {
 
             //301 - Permanent Redirect
             //return new LocalRedirectResult($"store/books/{bookid}",permanent: true);
-            return LocalRedirectPermanent($"store/books/{bookid}");
-        }
+            //return LocalRedirectPermanent($"store/books/{bookid}");
 
+            //return Redirect($"store/books/{bookid}");
+            return RedirectPermanent($"store/books/{bookid}");
+        }
     }
 }
