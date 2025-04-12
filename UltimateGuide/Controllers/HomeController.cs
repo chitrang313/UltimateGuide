@@ -5,29 +5,20 @@ using UltimateGuide.Models;
 
 namespace UltimateGuide.Controllers {
     public class HomeController:Controller {
-        [Route("bookstore")]
-        [Route("/")]
-        public IActionResult Index() {
-            if (!Request.Query.ContainsKey("bookid")) {
-                //Response.StatusCode = 400;
-                //return Content("Book ID not provided");
-                //return new BadRequestResult();
-                return BadRequest("Book ID not provided");
-            }
-
-            if (string.IsNullOrWhiteSpace((string)Request.Query["bookid"])) {
+        [Route("bookstore/{bookid?}/{isloggedin?}")]
+        public IActionResult Index(int? bookid, bool? isloggedin) {
+            if (!bookid.HasValue) {
                 //Response.StatusCode = 400;
                 //return Content("Book ID is empty");
-                return BadRequest("Book ID is empty");
+                return BadRequest("Book ID is not supplied or empty");
             }
 
-            int bookid = Convert.ToInt32(Request.Query["bookid"]);
             if (bookid <= 0 || bookid > 1000) {
                 //return Content("Book ID must be greter then zero and less then 1000");
                 return NotFound("Book ID must be greater than zero and less than 1000");
             }
-            bool isLoggedIn = Convert.ToBoolean(Request.Query["isloggedin"]);
-            if (!isLoggedIn) {
+
+            if (isloggedin.HasValue && !Convert.ToBoolean(isloggedin)) {
                 //Response.StatusCode = 401;
                 //return Content("You must be logged in to view this page");
                 return Unauthorized("You must be logged in to view this page");
@@ -52,7 +43,7 @@ namespace UltimateGuide.Controllers {
             //return LocalRedirectPermanent($"store/books/{bookid}");
 
             //return Redirect($"store/books/{bookid}");
-            return RedirectPermanent($"store/books/{bookid}");
+            return RedirectPermanent($"/store/books/{bookid}");
         }
     }
 }
