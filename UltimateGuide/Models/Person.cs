@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using UltimateGuide.CustomValidators;
 
 namespace UltimateGuide.Models {
     public class Person {
@@ -30,6 +31,11 @@ namespace UltimateGuide.Models {
 
         [Range(0,999.99,ErrorMessage = "{0} should be in between {1}$ to {2}$")]
         public double price { get; set; }
+
+        //[MinBirthYearValidatorAttribute(2005, ErrorMessage = "Date of Birth must be less then {0}")]
+        [MinBirthYearValidatorAttribute(2005)]
+        [Display(Name = "Date of Birth")]
+        public DateTime dateofbirth{ get; set; }
 
         public override string ToString() {
             return $"{Id}, {firstName}, {lastName}, {age}, {email}, {password}, {confirmPassword}";
