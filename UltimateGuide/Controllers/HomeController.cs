@@ -27,7 +27,7 @@ namespace UltimateGuide.Controllers {
 
             //302 - Temporary Redirect
             //return new RedirectToActionResult("Books", "Store", new { });
-            return RedirectToAction("Books","Store",new { id = bookid });
+            //return RedirectToAction("Books","Store",new { id = bookid });
 
             //301 - Permanent Redirect
             //return new RedirectToActionResult("Books", "Store", new { },permanent: true);
@@ -44,6 +44,8 @@ namespace UltimateGuide.Controllers {
 
             //return Redirect($"store/books/{bookid}");
             //return RedirectPermanent($"/store/books/{bookid}");
+
+            return Content($"<h1>{book.ToString()}</h1>","text/html");
         }
     }
 }
