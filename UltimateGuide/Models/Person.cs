@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using UltimateGuide.CustomValidators;
 
 namespace UltimateGuide.Models {
-    public class Person {
+    public class Person : IValidatableObject{
         public Guid Id { get; set; }
 
         [Required(ErrorMessage = "{0} can't be null or empty")]
@@ -11,7 +11,7 @@ namespace UltimateGuide.Models {
         [StringLength(maximumLength: 40,MinimumLength = 3,ErrorMessage = "{0} should be between {2} and {1} charactor long")]
         public string? firstName { get; set; }
         public string? lastName { get; set; }
-        public int age { get; set; }
+        public int? age { get; set; }
 
         [EmailAddress(ErrorMessage = "{0} need to be in a prper format")]
         [Required(ErrorMessage = "{0} can't be blank")]
@@ -35,15 +35,22 @@ namespace UltimateGuide.Models {
         //[MinBirthYearValidatorAttribute(2005, ErrorMessage = "Date of Birth must be less then {0}")]
         [MinBirthYearValidatorAttribute(2005)]
         [Display(Name = "Date of Birth")]
-        public DateTime dateofbirth { get; set; }
+        public DateTime? dateofbirth { get; set; }
 
         public DateTime? FromDate { get; set; }
 
         [DateRangeValidatorAttribute("FromDate",ErrorMessage = "From Date must be older then the To Date")]
         public DateTime? ToDate { get; set; }
 
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext) {
+            if (!age.HasValue && !dateofbirth.HasValue) {
+                yield return new ValidationResult("Either of Date of Birth or Age must be supplied",new[] {nameof(age) });
+            }
+        }
+
         public override string ToString() {
             return $"{Id}, {firstName}, {lastName}, {age}, {email}, {password}, {confirmPassword}";
         }
+
     }
 }
