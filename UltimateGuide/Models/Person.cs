@@ -4,11 +4,11 @@ using UltimateGuide.CustomValidators;
 
 namespace UltimateGuide.Models {
     public class Person {
-        public Guid Id{ get; set; }
+        public Guid Id { get; set; }
 
         [Required(ErrorMessage = "{0} can't be null or empty")]
         [Display(Name = "Person Name")]
-        [StringLength(maximumLength:40, MinimumLength = 3, ErrorMessage = "{0} should be between {2} and {1} charactor long")]
+        [StringLength(maximumLength: 40,MinimumLength = 3,ErrorMessage = "{0} should be between {2} and {1} charactor long")]
         public string? firstName { get; set; }
         public string? lastName { get; set; }
         public int age { get; set; }
@@ -35,7 +35,12 @@ namespace UltimateGuide.Models {
         //[MinBirthYearValidatorAttribute(2005, ErrorMessage = "Date of Birth must be less then {0}")]
         [MinBirthYearValidatorAttribute(2005)]
         [Display(Name = "Date of Birth")]
-        public DateTime dateofbirth{ get; set; }
+        public DateTime dateofbirth { get; set; }
+
+        public DateTime? FromDate { get; set; }
+
+        [DateRangeValidatorAttribute("FromDate",ErrorMessage = "From Date must be older then the To Date")]
+        public DateTime? ToDate { get; set; }
 
         public override string ToString() {
             return $"{Id}, {firstName}, {lastName}, {age}, {email}, {password}, {confirmPassword}";
