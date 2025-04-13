@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using UltimateGuide.CustomValidators;
 
@@ -11,6 +12,8 @@ namespace UltimateGuide.Models {
         [StringLength(maximumLength: 40,MinimumLength = 3,ErrorMessage = "{0} should be between {2} and {1} charactor long")]
         public string? firstName { get; set; }
         public string? lastName { get; set; }
+
+        [BindNever]
         public int? age { get; set; }
 
         [EmailAddress(ErrorMessage = "{0} need to be in a prper format")]

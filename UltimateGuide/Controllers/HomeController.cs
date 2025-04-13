@@ -13,7 +13,7 @@ namespace UltimateGuide.Controllers {
         }
 
         [Route("register")]
-        public IActionResult Register(Person person) {
+        public IActionResult Register([Bind(nameof(Person.firstName), nameof(Person.email),nameof(Person.password), nameof(Person.confirmPassword))]Person person) {
             if (!ModelState.IsValid) {
                string errors = string.Join(Environment.NewLine, ModelState.Values.SelectMany(item => item.Errors.Select(error => error.ErrorMessage)));
                 
