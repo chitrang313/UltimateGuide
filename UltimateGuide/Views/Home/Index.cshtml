@@ -2,12 +2,12 @@
 
 @{
   string title = "asp.net core ultimate guid";
-  Person person = new Person {
-        Name = "Chitrang",
-        DateofBirth = Convert.ToDateTime("1994-10-18"),
-        Gender = Gender.Female
-    // DateofBirth = null,
-      };
+  List<Person> persons = new List<Person>
+              {
+     new Person { Name = "John Doe", Gender = Gender.Male,DateofBirth = DateTime.Parse("2025-04-16")  },
+     new Person { Name = "Jane Smith", Gender = Gender.Female,DateofBirth = DateTime.Parse("2025-04-17")  },
+     new Person { Name = "Sam Brown",Gender = Gender.Other, DateofBirth = DateTime.Parse("2025-04-18") }
+ };
 }
 <!DOCTYPE html>
 <html>
@@ -17,24 +17,15 @@
 </head>
 <body>
   <h1>Welcome to the View</h1>
-  <h2>@person.Name</h2>
-  @if (person.DateofBirth.HasValue) {
-    double age = MathF.Round((float)((DateTime.Now - person.DateofBirth).Value.TotalDays / 365.25));
-    <h3>@age year old</h3>
-  } else {
-    <p>date of birth is null</p>
-  }
-
-  @switch (person.Gender) {
-    case Gender.Male:
-    <p>November 19th is international Men's Day</p>
-    break;
-    case Gender.Female:
-    <p>March 8 is international Women's Day</p>
-    break;
-    case Gender.Other:
-    <p>March 31 is international Trans's Day</p>
-    break;
+  @foreach (Person p in persons) {
+    <div>
+      @p.Name<span>, </span>
+      <span>@p.Gender</span>
+      @if (p.DateofBirth != null) {
+        <span>@p.DateofBirth.Value.ToString("MM/dd/yyyy")</span>
+      }
+    </div>
+    
   }
 </body>
 </html>
