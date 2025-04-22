@@ -1,4 +1,6 @@
-﻿@using UltimateGuide.Models
+﻿@using System.Collections
+@using UltimateGuide.Models
+@model IEnumerable<Person>
 
 @functions {
   double? GetAge(DateTime? dateofbirth) {
@@ -16,8 +18,7 @@
 <body>
   <div class="page-content">
     <h1>Welcome to the View</h1>
-    @for (int i = 0;i < ViewBag.Persons.Count;i++) {
-      Person p = ViewBag.Persons[i];
+    @foreach (Person p in Model) {
       <div class="box float-left w-50"> 
         <h3>@p.Name</h3>
         <table class="table w-100">
@@ -28,7 +29,7 @@
             </tr>
             <tr>
               <td>Date of Birth</td>
-              <td>@p.DateofBirth.Value.ToString("MM/dd/yyyy")</td>
+              <td>@p.DateofBirth?.ToString("MM/dd/yyyy")</td>
             </tr>
           </tbody>
         </table>
