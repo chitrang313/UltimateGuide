@@ -1,6 +1,5 @@
-﻿@using System.Collections
-@using UltimateGuide.Models
-@model IEnumerable<Person>
+﻿@using UltimateGuide.Models
+@model Person
 
 @functions {
   double? GetAge(DateTime? dateofbirth) {
@@ -11,36 +10,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>@ViewData["Title"]</title>
+  <title>@ViewBag.Title</title>
   <meta charset="utf-8" />
   <link rel="stylesheet" href="~/StyleSheet.css"/>
 </head>
 <body>
+  <h1>Person Detils</h1>
   <div class="page-content">
-    <h1>Welcome to the View</h1>
-    @foreach (Person p in Model) {
       <div class="box float-left w-50"> 
-        <h3>@p.Name</h3>
+        <h3>@Model.Name</h3>
         <table class="table w-100">
           <tbody>
             <tr>
               <td>Gender</td>
-              <td>@p.Gender</td>
+              <td>@Model.Gender</td>
             </tr>
             <tr>
               <td>Date of Birth</td>
-              <td>@p.DateofBirth?.ToString("MM/dd/yyyy")</td>
+              <td>@Model.DateofBirth?.ToString("MM/dd/yyyy")</td>
             </tr>
           </tbody>
         </table>
-        <a href="person-details/@p.Name">Details</a>
-        @*<s pan>@p.Gender</span>
-        @if (p.DateofBirth != null) {
-          <span>@p.DateofBirth.Value.ToString("MM/dd/yyyy")</span>
-          <span>@GetAge(p.DateofBirth) years old</span>
-        } *@
       </div>
-    }
+      <a href="/home">Back to Persons</a>
   </div>
 </body>
 </html>
