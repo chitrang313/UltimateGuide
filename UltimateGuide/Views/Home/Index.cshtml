@@ -13,14 +13,14 @@
 <head>
   <title>@ViewData["Title"]</title>
   <meta charset="utf-8" />
-  <link rel="stylesheet" href="~/StyleSheet.css"/>
+  <link rel="stylesheet" href="~/StyleSheet.css" />
 </head>
 <body>
   <div class="page-content">
     <h1>Welcome to the View</h1>
     @foreach (Person p in Model) {
-      <div class="box float-left w-50"> 
-        <h3>@p.Name</h3>
+      <div class="box float-left w-50">
+        <h3>@p.PersonName</h3>
         <table class="table w-100">
           <tbody>
             <tr>
@@ -33,7 +33,7 @@
             </tr>
           </tbody>
         </table>
-        <a href="person-details/@p.Name">Details</a>
+        <a href="person-details/@p.PersonName">Details</a>
         @*<s pan>@p.Gender</span>
         @if (p.DateofBirth != null) {
           <span>@p.DateofBirth.Value.ToString("MM/dd/yyyy")</span>
@@ -41,6 +41,7 @@
         } *@
       </div>
     }
+    <a href="person-with-products">Person with Product</a>
   </div>
 </body>
 </html>

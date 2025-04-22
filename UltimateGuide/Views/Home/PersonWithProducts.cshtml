@@ -1,0 +1,25 @@
+﻿@using UltimateGuide.Models;
+@model PersonWithProductsModel
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>@ViewBag.Title</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="~/StyleSheet.css" />
+</head>
+<body>
+  <h1>Person Detils</h1>
+  <div class="page-content">
+    <div class="box float-left w-50">
+      <p>@Model.PersonData?.PersonName</p>      
+      <p>@Model.PersonData?.DateofBirth?.ToShortDateString()</p>      
+    </div>
+
+    <div class="box float-left w-50">
+      <p>@Model.ProductData?.ProductId</p>
+      <p>@Model.ProductData?.ProductName</p>
+    </div>
+  </div>
+</body>
+</html>
