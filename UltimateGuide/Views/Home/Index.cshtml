@@ -1,32 +1,49 @@
 ﻿@using UltimateGuide.Models
 
-@{
-  string title = "asp.net core ultimate guid";
-  List<Person> persons = new List<Person>
-              {
-     new Person { Name = "John Doe", Gender = Gender.Male,DateofBirth = DateTime.Parse("2025-04-16")  },
-     new Person { Name = "Jane Smith", Gender = Gender.Female,DateofBirth = DateTime.Parse("2025-04-17")  },
-     new Person { Name = "Sam Brown",Gender = Gender.Other, DateofBirth = DateTime.Parse("2025-04-18") }
- };
+@functions {
+  double? GetAge(DateTime? dateofbirth) {
+    return dateofbirth.HasValue ? MathF.Round(((float)(DateTime.Now - dateofbirth.Value).TotalDays) / 365.25f) : null;
+  }
 }
+
 <!DOCTYPE html>
 <html>
 <head>
-  <title>@title</title>
+  <title>@ViewData["Title"]</title>
   <meta charset="utf-8" />
+  <link rel="stylesheet" href="~/StyleSheet.css"/>
 </head>
 <body>
-  <h1>Welcome to the View</h1>
-  @for (int i = 0;i < 2;i++) {
-    Person p = persons[i];
-    <div>
-      @p.Name<span>, </span>
-      <span>@p.Gender</span>
-      @if (p.DateofBirth != null) {
-        <span>@p.DateofBirth.Value.ToString("MM/dd/yyyy")</span>
-      }
-    </div>
-    
-  }
+  <div class="page-content">
+    <h1>Welcome to the View</h1>
+    @{
+      List<Person>? people = (List<Person>?)ViewData["Persons"];
+    }
+    @for (int i = 0;i < people.Count;i++) {
+      Person p = people[i];
+      @* @: Hello to *@
+      <div class="box float-left w-50"> 
+        <h3>@p.Name</h3>
+        <table class="table w-100">
+          <tbody>
+            <tr>
+              <td>Gender</td>
+              <td>@p.Gender</td>
+            </tr>
+            <tr>
+              <td>Date of Birth</td>
+              <td>@p.DateofBirth.Value.ToString("MM/dd/yyyy")</td>
+            </tr>
+          </tbody>
+        </table>
+
+        @*<s pan>@p.Gender</span>
+        @if (p.DateofBirth != null) {
+          <span>@p.DateofBirth.Value.ToString("MM/dd/yyyy")</span>
+          <span>@GetAge(p.DateofBirth) years old</span>
+        } *@
+      </div>
+    }
+  </div>
 </body>
 </html>
