@@ -13,7 +13,8 @@ namespace UltimateGuide.Controllers {
      new Person { Name = "Jane Smith", Gender = Gender.Female,DateofBirth = DateTime.Parse("2025-04-17")  },
      new Person { Name = "Sam Brown",Gender = Gender.Other, DateofBirth = DateTime.Parse("2025-04-18") }
  };
-            ViewData["Persons"] = persons;
+            //ViewData["Persons"] = persons;
+            ViewBag.Persons = persons;
             return View();
         }
     }

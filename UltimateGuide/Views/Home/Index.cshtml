@@ -16,12 +16,8 @@
 <body>
   <div class="page-content">
     <h1>Welcome to the View</h1>
-    @{
-      List<Person>? people = (List<Person>?)ViewData["Persons"];
-    }
-    @for (int i = 0;i < people.Count;i++) {
-      Person p = people[i];
-      @* @: Hello to *@
+    @for (int i = 0;i < ViewBag.Persons.Count;i++) {
+      Person p = ViewBag.Persons[i];
       <div class="box float-left w-50"> 
         <h3>@p.Name</h3>
         <table class="table w-100">
