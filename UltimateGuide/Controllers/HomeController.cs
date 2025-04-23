@@ -52,5 +52,12 @@ namespace UltimateGuide.Controllers {
             };
             return View("PersonWithProducts", personWithProducts);
         }
+
+        [Route("home/all-products")]
+        public IActionResult All() { 
+            return View();
+            //Views/Home/All
+            //Views/Shared/All <--- mostly this is used for partial view
+        }
     }
 }
