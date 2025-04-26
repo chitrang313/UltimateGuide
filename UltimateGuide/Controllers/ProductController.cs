@@ -7,8 +7,10 @@ namespace UltimateGuide.Controllers {
             return View();
         }
 
-        [Route("search")]
-        public IActionResult Search() {
+        //url: search/11
+        [Route("search/{productId?}")]
+        public IActionResult Search(int? productId) {
+            ViewBag.productId = productId;
             return View();
         }
 
