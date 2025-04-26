@@ -6,5 +6,10 @@
 @* @await Html.PartialAsync("_ListPartialView") *@
 
 @{
-  await Html.RenderPartialAsync("_ListPartialView");
+  var myViewData = new ViewDataDictionary(ViewData);
+
+  ViewData["Title"] = "Cities";
+  ViewData["ListItems"] = new List<string> { "New York","Los Angeles","Chicago","Houston","Phoenix" };
+
+  await Html.RenderPartialAsync("_ListPartialView", myViewData);
 }

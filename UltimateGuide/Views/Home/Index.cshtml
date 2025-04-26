@@ -6,8 +6,10 @@
 
 <div class="box">
   @{
+    var myViewData = new ViewDataDictionary(ViewData);
+
     ViewData["Title"] = "Countries";
     ViewData["ListItems"] = new List<string> { "India","USA","Canada" };
   }
-  <partial name="_ListPartialView"></partial>
+  <partial name="_ListPartialView" view-data="myViewData"></partial>
 </div>
