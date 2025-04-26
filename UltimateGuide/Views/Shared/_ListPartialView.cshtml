@@ -1,7 +1,9 @@
-﻿<div class="list-container">
-  <h3>@ViewBag.Title</h3>
+﻿@model ListItems
+
+<div class="list-container">
+  <h3>@Model.ItemName</h3>
   <ul class="list">
-    @foreach (string item in ViewBag.ListItems) {
+    @foreach (string item in Model.ItemsList) {
       <li>@item</li>
     }
   </ul>

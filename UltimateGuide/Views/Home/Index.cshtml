@@ -1,15 +1,11 @@
-﻿
+﻿@{
+  ListItems listItems = new ListItems {
+        ItemName = "Cities",
+        ItemsList = new List<string> { "New York","Los Angeles","Chicago","Houston","Phoenix" }
+      };
+}
 
 <h1>Home</h1>
-
-<partial name="_ListPartialView"></partial>
-
 <div class="box">
-  @{
-    var myViewData = new ViewDataDictionary(ViewData);
-
-    ViewData["Title"] = "Countries";
-    ViewData["ListItems"] = new List<string> { "India","USA","Canada" };
-  }
-  <partial name="_ListPartialView" view-data="myViewData"></partial>
+  <partial name="_ListPartialView" model="listItems"></partial>
 </div>
