@@ -1,11 +1,13 @@
-﻿@{
-  ListItems listItems = new ListItems {
-        ItemName = "Cities",
-        ItemsList = new List<string> { "New York","Los Angeles","Chicago","Houston","Phoenix" }
-      };
-}
+﻿<h1>Home</h1>
 
-<h1>Home</h1>
-<div class="box">
-  <partial name="_ListPartialView" model="listItems"></partial>
-</div>
+<button class="button button-blue-back" type="button" id="load-button">Load Programing Languages</button>
+
+<div class="box programing-languages-content"></div>
+
+<script>
+  document.querySelector("#load-button").addEventListener("click",async function() {
+    var response = await fetch("programming-language");
+    var languages = await response.text();
+    document.querySelector(".programing-languages-content").innerHTML = languages;
+  });
+</script>
