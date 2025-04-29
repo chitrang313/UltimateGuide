@@ -1,5 +1,6 @@
-﻿<div class="box">
-  <h3>Grid</h3>
+﻿@using UltimateGuide.Models
+<div class="box">
+  <h3>@ViewBag.Grid.GridTitle</h3>
   <table class="table w-100">
     <thead>
       <tr>
@@ -8,14 +9,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>1</td>
-        <td>one</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>two</td>
-      </tr>
+      @foreach (Person person in ViewBag.Grid.Persons) {
+        <tr>
+          <td>@person.PersonName</td>
+          <td>@person.PersonJobTitle</td>
+        </tr>
+      }
     </tbody>
   </table>
 </div>
