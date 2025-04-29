@@ -5,4 +5,27 @@
 <h1>About</h1>
 <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of t</p>
 
-<vc:grid></vc:grid>
+@{
+  PersonGridModel employeeGridModel = new PersonGridModel() {
+        GridTitle = "Employee List",
+        Persons = new List<Person>() {
+                new Person(){
+                    PersonName = "employee one",
+                    PersonJobTitle = "Employee one job title"
+                },
+                new Person(){
+                    PersonName = "employee two",
+                    PersonJobTitle = "Employee two job title"
+                },
+                }
+      };
+}
+
+<vc:grid grid-model="employeeGridModel"></vc:grid>
+
+@* 
+  //ama j "gridModel" nu name che ne ane "grid-model" ma lakhase slug-case ma to j dekhase
+  public async Task<IViewComponentResult> InvokeAsync(PersonGridModel gridModel){
+            return View("Sample",gridModel);
+  }
+*@
