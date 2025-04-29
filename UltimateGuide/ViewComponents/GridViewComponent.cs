@@ -4,7 +4,7 @@ using UltimateGuide.Models;
 namespace UltimateGuide.ViewComponents {
     public class GridViewComponent:ViewComponent {
         public async Task<IViewComponentResult> InvokeAsync() {
-            PersonGridModel model = new PersonGridModel() {
+            PersonGridModel personGridModel = new PersonGridModel() {
                 GridTitle = "Persons List",
                 Persons = new List<Person>() {
                 new Person(){
@@ -17,8 +17,7 @@ namespace UltimateGuide.ViewComponents {
                 },
                 }
             };
-            ViewData["Grid"] = model;
-            return View("Sample");
+            return View("Sample",personGridModel);
         }
     }
 }
