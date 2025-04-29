@@ -3,41 +3,6 @@
 }
 
 <h1>Home</h1>
-<p>if class name is "AbcDef"" is written as a abc-def all in "slug-case"</p>
-
-@{
-  PersonGridModel personGridModel = new PersonGridModel() {
-        GridTitle = "Persons List",
-        Persons = new List<Person>() {
-                new Person(){
-                    PersonName = "Chitrang",
-                    PersonJobTitle = "Software Engineer"
-                },
-                new Person(){
-                    PersonName = "User",
-                    PersonJobTitle = "Data Analitics Engineer"
-                },
-                }
-      };
-}
-
-@await Component.InvokeAsync("Grid",personGridModel)
-@* <vc:grid></vc:grid>  *@
-
-@{
-  PersonGridModel friendsGridModel = new PersonGridModel() {
-        GridTitle = "Friends List",
-        Persons = new List<Person>() {
-                new Person(){
-                    PersonName = "friend one",
-                    PersonJobTitle = "Devops Engineer"
-                },
-                new Person(){
-                    PersonName = "friend two",
-                    PersonJobTitle = "AIML Engineer"
-                },
-                }
-      };
-}
-
-@await Component.InvokeAsync("Grid",friendsGridModel)
+<button class="button button-blue-back" id="load-friends-button">Load Friends</button>
+<div id="list"></div>
+<script src="~/friend.js"></script>
