@@ -5,8 +5,8 @@ using ServiceContracts;
 namespace UltimateGuide.Controllers {
     public class HomeController:Controller {
         private readonly ICityServices _citiesServices;
-        public HomeController() {
-            _citiesServices = null;//new CitiesServices();
+        public HomeController(ICityServices cityServices) {
+            _citiesServices = cityServices;
         }
 
         [Route("/")]
