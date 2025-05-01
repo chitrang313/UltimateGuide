@@ -1,5 +1,7 @@
-﻿namespace Services {
-    public class CitiesServices {
+﻿using ServiceContracts;
+
+namespace Services {
+    public class CitiesServices: ICityServices {
         private List<string> _cityList;
         public CitiesServices() {
             _cityList = new List<string>() { 

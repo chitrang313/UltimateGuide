@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Services;
+using ServiceContracts;
 
 namespace UltimateGuide.Controllers {
     public class HomeController:Controller {
-        private readonly CitiesServices _citiesServices;
+        private readonly ICityServices _citiesServices;
         public HomeController() {
-            _citiesServices = new CitiesServices();
+            _citiesServices = null;//new CitiesServices();
         }
 
         [Route("/")]
