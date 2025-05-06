@@ -2,25 +2,28 @@
 
 namespace Services {
     public class CitiesServices:ICityServices {
-        private Guid _serviceInstanceId;
+        private List<string> _cities;
+        private Guid _servieInstanceId;
+
         public Guid ServiceInstanceId {
             get {
-                return _serviceInstanceId;
+                return _servieInstanceId;
             }
         }
-        private List<string> _cityList;
+
         public CitiesServices() {
-            _serviceInstanceId = Guid.NewGuid();
-            _cityList = new List<string>() {
-                "London",
-                "New York",
-                "Tokyo",
-                "Paris",
-            };
+            _servieInstanceId = Guid.NewGuid();
+            _cities = new List<string>() {
+        "London",
+        "Paris",
+        "New York",
+        "Tokyo",
+        "Rome"
+      };
         }
 
         public List<string> GetCities() {
-            return _cityList;
+            return _cities;
         }
     }
 }
