@@ -7,7 +7,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.Add(new ServiceDescriptor(
     typeof(ICityServices),
     typeof(CitiesServices),
-    ServiceLifetime.Scoped
+    ServiceLifetime.Singleton
     ));
 
 var app = builder.Build();
