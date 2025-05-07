@@ -1,7 +1,7 @@
 ﻿using ServiceContracts;
 
 namespace Services {
-    public class CitiesServices:ICityServices {
+    public class CitiesServices:ICityServices, IDisposable {
         private List<string> _cities;
         private Guid _servieInstanceId;
 
@@ -20,10 +20,16 @@ namespace Services {
         "Tokyo",
         "Rome"
       };
+
+            //TODO: Add logic to open database connection
         }
 
         public List<string> GetCities() {
             return _cities;
+        }
+
+        public void Dispose() {
+            //TODO: add logic to close database connection
         }
     }
 }
