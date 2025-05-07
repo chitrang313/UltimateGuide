@@ -10,9 +10,9 @@ builder.Services.AddControllersWithViews();
 //    ServiceLifetime.Scoped
 //    ));
 
-builder.Services.AddTransient<ICityServices,CitiesServices>();
+//builder.Services.AddTransient<ICityServices,CitiesServices>();
 builder.Services.AddScoped<ICityServices,CitiesServices>();
-builder.Services.AddSingleton<ICityServices,CitiesServices>();
+//builder.Services.AddSingleton<ICityServices,CitiesServices>();
 
 var app = builder.Build();
 
